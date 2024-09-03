@@ -1,0 +1,76 @@
+# Inicializa as variáveis
+INDICE = 13
+SOMA = 0
+K = 0
+
+# Loop para somar os valores de 1 a INDICE
+while K < INDICE:
+    K += 1
+    SOMA += K
+
+# Exibe o resultado final
+print(f"O valor final da variável SOMA é {SOMA}")
+
+
+
+def is_fibonacci(n):
+    # Inicia os primeiros números da sequência
+    a, b = 0, 1
+    # Verifica se o número pertence à sequência
+    while b <= n:
+        if b == n:
+            return True
+        a, b = b, a + b
+    return n == 0  # Caso especial para 0, que pertence à sequência
+
+# Solicita ao usuário um número e verifica se ele pertence à sequência
+numero = int(input("Informe um número: "))
+if is_fibonacci(numero):
+    print(f"O número {numero} pertence à sequência de Fibonacci.")
+else:
+    print(f"O número {numero} não pertence à sequência de Fibonacci.")
+
+
+
+
+import json
+
+def calcular_faturamento():
+    # Carrega os dados do arquivo JSON
+    with open('faturamento.json') as f:
+        data = json.load(f)
+
+    # Filtra os dias com faturamento > 0
+    valores = [dia["valor"] for dia in data["faturamento"] if dia["valor"] > 0]
+
+    # Calcula o menor, maior e a média de faturamento
+    menor_valor = min(valores)
+    maior_valor = max(valores)
+    media_mensal = sum(valores) / len(valores)
+
+    # Conta os dias com faturamento acima da média
+    dias_acima_da_media = sum(1 for v in valores if v > media_mensal)
+
+    # Retorna os resultados
+    return menor_valor, maior_valor, dias_acima_da_media
+
+# Executa o cálculo e exibe os resultados
+menor_valor, maior_valor, dias_acima_da_media = calcular_faturamento()
+print(f"Menor valor de faturamento: R${menor_valor:.2f}")
+print(f"Maior valor de faturamento: R${maior_valor:.2f}")
+print(f"Dias com faturamento acima da média: {dias_acima_da_media}")
+
+
+
+
+def inverter_string(s):
+    # Inicializa a string invertida
+    resultado = ""
+    # Percorre a string original ao contrário
+    for char in s:
+        resultado = char + resultado
+    return resultado
+
+# Solicita ao usuário a string e exibe a inversão
+texto = input("Informe uma string: ")
+print(f"String invertida: {inverter_string(texto)}")
